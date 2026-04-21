@@ -26,6 +26,19 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
+    - name: Install Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Install ESLint
+      run: |
+        npm install -g eslint
+
+    - name: Run ESLint
+      run: |
+        eslint '**/*.js'
+
     - name: Run tests
       run: |
         pytest
