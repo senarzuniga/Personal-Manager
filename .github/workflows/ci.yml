@@ -40,6 +40,16 @@ jobs:
       run: |
         eslint '**/*.js'
 
-    - name: Run tests
+    - name: Run coverage
       run: |
-        pytest
+        coverage run -m pytest
+
+    - name: Generate coverage report
+      run: |
+        coverage xml
+
+    - name: Upload coverage report
+      uses: actions/upload-artifact@v2
+      with:
+        name: coverage-report
+        path: coverage.xml
